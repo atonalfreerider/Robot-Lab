@@ -47,7 +47,7 @@ public class Main : MonoBehaviour
                     case Circle circle:
                         Shapes.Circle circleShape =
                             PolygonFactory.NewCirclePoly(PolygonFactory.Instance.mainMat);
-                        circleShape.gameObject.SetActive(true);
+                        circleShape.gameObject.SetActive(false);
                         circleShape.transform.SetParent(transform, false);
                         circleShape.DrawCirc((float)circle.Radius, 1, 0);
                         Axis2Placement3D circleAxis2Placement3D = data[circle.PointId] as Axis2Placement3D;
@@ -65,6 +65,22 @@ public class Main : MonoBehaviour
                     case ConicalSurface conicalSurface:
                         break;
                     case CylindricalSurface cylindricalSurface:
+                        Shapes.Circle cylinder = PolygonFactory.NewCirclePoly(PolygonFactory.Instance.mainMat);
+                        cylinder.gameObject.SetActive(true);
+                        cylinder.transform.SetParent(transform, false);
+                        
+                        Axis2Placement3D cylinderAxis2Placement3D = data[cylindricalSurface.PointId] as Axis2Placement3D;
+                        CartesianPoint cylinderPt = data[cylinderAxis2Placement3D.PointIds[0]] as CartesianPoint;
+                        DirectionPoint cylinderDir1 = data[cylinderAxis2Placement3D.PointIds[1]] as DirectionPoint;
+                        DirectionPoint cylinderDir2 = data[cylinderAxis2Placement3D.PointIds[2]] as DirectionPoint;
+
+                        cylinder.DrawCirc((float)cylindricalSurface.Radius, 1, float.Parse(cylindricalSurface.Data[2]));
+                        
+                        cylinder.transform.localPosition = new Vector3(cylinderPt.Vector.X, cylinderPt.Vector.Y, cylinderPt.Vector.Z);
+                        cylinder.transform.localRotation = Quaternion.LookRotation(
+                            new Vector3(cylinderDir1.Vector.X, cylinderDir1.Vector.Y, cylinderDir1.Vector.Z),
+                            new Vector3(cylinderDir2.Vector.X, cylinderDir2.Vector.Y, cylinderDir2.Vector.Z));
+                        
                         break;
                     case EdgeCurve edgeCurve:
                         break;
