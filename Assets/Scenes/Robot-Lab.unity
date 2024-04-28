@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363386c00fa74bdfabf94eccb0010abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stpPath: C:\Users\john\Desktop\RotaryCylinderEngineSTEP\Assembly1.stp
+  stpPath: C:\Users\john\Desktop\RotaryCylinderEngineSTEP\Bolt2,5.stp
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
