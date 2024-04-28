@@ -119,6 +119,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &647583456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 647583459}
+  - component: {fileID: 647583458}
+  - component: {fileID: 647583457}
+  m_Layer: 0
+  m_Name: PolygonFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &647583457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647583456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2a5ba2e68a4099a5108220bdc1fe5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &647583458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647583456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3377eb2112a709141bdb0293360df055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PolygonPool: {fileID: 647583457}
+  mainMat: {fileID: 2100000, guid: 6f45cded74f93ba4aa47b2b21a2cd093, type: 2}
+  transMat: {fileID: 2100000, guid: 90b8caf6ca968fa43bda16e26809c382, type: 2}
+  textMat: {fileID: 2100000, guid: 910ebba020e195e4ab66368557560980, type: 2}
+  tetra: {fileID: 0}
+  icosahedron0: {fileID: 0}
+  tri: {fileID: 0}
+  hex: {fileID: 0}
+--- !u!4 &647583459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647583456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,11 +413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363386c00fa74bdfabf94eccb0010abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stpPath: C:\Users\john\Desktop\RotaryCylinderEngineSTEP\Bolt5SW.stp
+  stpPath: C:\Users\john\Desktop\RotaryCylinderEngineSTEP
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 647583459}
   - {fileID: 1692015050}
