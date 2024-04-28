@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BasicLoader.Interface;
+using Habrador_Computational_Geometry;
 using Shapes;
 using STPLoader.Implementation.Converter.Entity;
 using STPLoader.Implementation.Model;
@@ -232,24 +233,23 @@ public class Main : MonoBehaviour
         Polygon edgeLoopPoly = PolygonFactory.NewPoly(PolygonFactory.Instance.mainMat);
         edgeLoopPoly.gameObject.SetActive(true);
         edgeLoopPoly.transform.SetParent(transform, false);
-        
-        List<Vector2> edgeLoopPoints = edgeLoopConvertable.Points.Select(p => new Vector2(p.X, p.Y)).ToList();
-        DelaunayTriangulator delaunayTriangulator = new DelaunayTriangulator(edgeLoopPoints);
-        delaunayTriangulator.Triangulate();
-        List<Triangle2D> triangle2Ds = delaunayTriangulator.GetTriangles();
+
+        HashSet<MyVector3> points = edgeLoopConvertable.Points.Select(p => new MyVector3(p.X, p.Y, p.Z)).ToHashSet();
+        HalfEdgeData3? data = _ConvexHull.Iterative_3D(points, true);
+
+        if (data == null) return edgeLoopPoly;
         
         List<Vector3> vertices = new List<Vector3>();
         List<int> indices = new List<int>();
-        
-        foreach (Triangle2D triangle2D in triangle2Ds)
+
+        foreach (HalfEdgeFace3 halfEdgeFace3 in data.faces)
         {
-            vertices.Add(triangle2D.a);
-            vertices.Add(triangle2D.b);
-            vertices.Add(triangle2D.c);
-            
-            indices.Add(vertices.Count - 3);
-            indices.Add(vertices.Count - 2);
-            indices.Add(vertices.Count - 1);
+            foreach (HalfEdge3 halfEdge3 in halfEdgeFace3.GetEdges())
+            {
+                Vector3 vert = new Vector3(halfEdge3.v.position.x, halfEdge3.v.position.y, halfEdge3.v.position.z);
+                vertices.Add(vert);
+                indices.Add(vertices.Count - 1);
+            }
         }
         
         edgeLoopPoly.Draw3DPoly(vertices.ToArray(), Polygon.MirrorIndices(indices.ToArray(), 0));
